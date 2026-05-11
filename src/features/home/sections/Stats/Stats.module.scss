@@ -1,0 +1,75 @@
+@use '@/styles/variables' as *;
+
+.stats {
+  background-color: #F2F4F2;
+  padding: 3rem 0;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: $bp-desktop) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  position: relative;
+  justify-content: center;
+
+  @media (max-width: $bp-desktop) {
+    justify-content: flex-start;
+  }
+}
+
+.icon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $deep-green;
+  line-height: 1.2;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background-color: rgba($black, 0.1);
+  margin-left: auto;
+
+  @media (max-width: $bp-desktop) {
+    display: none;
+  }
+}

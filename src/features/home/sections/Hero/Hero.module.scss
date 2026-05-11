@@ -1,0 +1,157 @@
+@use '@/styles/variables' as *;
+
+.hero {
+  position: relative;
+  background-color: $white;
+  padding-top: 140px;
+  padding-bottom: 6rem;
+  overflow: hidden;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: $bp-desktop) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.content {
+  z-index: 10;
+}
+
+.edition {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $gold;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  color: $deep-green;
+  margin-bottom: 2.5rem;
+  font-family: $font-heading;
+  font-weight: 800;
+
+  span {
+    color: $deep-green;
+  }
+
+  .highlight {
+    color: $gold;
+  }
+}
+
+.description {
+  font-size: 1.15rem;
+  color: $text-secondary;
+  line-height: 1.7;
+  max-width: 500px;
+  margin-bottom: 3.5rem;
+
+  @media (max-width: $bp-desktop) {
+    margin: 0 auto 3rem;
+  }
+}
+
+.visual {
+  position: relative;
+  height: 600px;
+
+  @media (max-width: $bp-desktop) {
+    height: 400px;
+    margin-top: 3rem;
+  }
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: calc(100% + 200px);
+  height: 100%;
+  background-color: $deep-green;
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 1;
+
+  @media (max-width: $bp-desktop) {
+    right: -20px;
+    width: calc(100% + 40px);
+    clip-path: none;
+    border-radius: $radius-lg;
+  }
+}
+
+.image {
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.badge {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
+  @media (max-width: $bp-desktop) {
+    left: 50%;
+  }
+}
+
+.badgeCircle {
+  width: 140px;
+  height: 140px;
+  background-color: $deep-green;
+  border-radius: 50%;
+  border: 4px solid $gold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.badgeText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  
+  span {
+    margin: 1px 0;
+  }
+}
+
+.badgeIcon {
+  font-size: 2rem;
+  color: $gold;
+  margin-top: 5px;
+}
+
+.patternDots {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(rgba($white, 0.2) 2px, transparent 2px);
+  background-size: 15px 15px;
+  z-index: 2;
+}

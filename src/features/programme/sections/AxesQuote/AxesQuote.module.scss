@@ -1,0 +1,106 @@
+@use '@/styles/variables' as *;
+
+.section {
+  padding: 6rem 0;
+  background-color: #F8F9F8;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: $bp-desktop) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.axes {
+  display: flex;
+  flex-direction: column;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $gold;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  color: $deep-green;
+  margin-bottom: 2rem;
+  font-family: $font-heading;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1rem;
+  color: $text-secondary;
+  font-weight: 500;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: $deep-green;
+  color: $white;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.quoteBox {
+  background-color: $deep-green;
+  padding: 4rem 3rem;
+  border-radius: $radius-lg;
+  color: $white;
+  position: relative;
+  text-align: center;
+  box-shadow: $shadow-xl;
+}
+
+.quoteIcon {
+  font-size: 5rem;
+  color: $gold;
+  opacity: 0.2;
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-family: serif;
+}
+
+.quoteText {
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.author {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $gold;
+}

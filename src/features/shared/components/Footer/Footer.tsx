@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navigationLinks, footerLinks } from "@/features/shared/constants/navigation";
+import Image from "next/image";
 import { siteConfig } from "@/features/shared/constants/site.config";
 import styles from "./Footer.module.scss";
 
@@ -8,84 +8,66 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.topBorder} />
       <div className={styles.container}>
         <div className={styles.grid}>
-          {/* Brand */}
           <div className={styles.brand}>
-            <div className={styles.logo}>
-              <span className={styles.logoIcon}>⚖</span>
-              <div>
-                <h3 className={styles.logoTitle}>{siteConfig.shortName}</h3>
-                <p className={styles.logoSubtitle}>Droit Constitutionnel</p>
-              </div>
-            </div>
-            <p className={styles.description}>{siteConfig.description}</p>
-          </div>
-
-          {/* Navigation */}
-          <div className={styles.column}>
-            <h4 className={styles.columnTitle}>Navigation</h4>
-            <ul className={styles.list}>
-              {navigationLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className={styles.footerLink}>
-                    {link.label}
-                  </Link>
-                </li>
+            <Image 
+              src="/logos/logo.png" 
+              alt="Logo CIDC" 
+              width={220} 
+              height={50} 
+              className={styles.footerLogo}
+            />
+            <p className={styles.description}>
+              Un espace de dialogue et de coopération pour des constitutions au service de la liberté, de la justice et de la démocratie.
+            </p>
+            <div className={styles.socials}>
+              {Object.entries(siteConfig.social).map(([platform, url]) => (
+                <a key={platform} href={url} className={styles.socialLink} title={platform}>
+                  <span className={styles.socialIcon}>{platform.substring(0, 1)}</span>
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Contact */}
-          <div className={styles.column}>
-            <h4 className={styles.columnTitle}>Contact</h4>
-            <ul className={styles.list}>
-              <li className={styles.contactItem}>
-                <span className={styles.contactIcon}>📧</span>
-                <span>{siteConfig.contact.email}</span>
+          <div className={styles.links}>
+            <h4 className={styles.title}>LIENS RAPIDES</h4>
+            <div className={styles.linksGrid}>
+              <Link href="/">Accueil</Link>
+              <Link href="/about">À propos</Link>
+              <Link href="/programme">Programme</Link>
+              <Link href="/intervenants">Intervenants</Link>
+              <Link href="/ressources">Ressources</Link>
+              <Link href="/actualites">Actualités</Link>
+              <Link href="/contact">Contact</Link>
+            </div>
+          </div>
+
+          <div className={styles.contact}>
+            <h4 className={styles.title}>NOUS CONTACTER</h4>
+            <ul className={styles.contactList}>
+              <li>
+                <span className={styles.icon}>✉</span>
+                <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
               </li>
-              <li className={styles.contactItem}>
-                <span className={styles.contactIcon}>📞</span>
-                <span>{siteConfig.contact.phone}</span>
+              <li>
+                <span className={styles.icon}>📞</span>
+                <a href={`tel:${siteConfig.contact.phone}`}>{siteConfig.contact.phone}</a>
               </li>
-              <li className={styles.contactItem}>
-                <span className={styles.contactIcon}>📍</span>
+              <li>
+                <span className={styles.icon}>📍</span>
                 <span>{siteConfig.contact.address}</span>
               </li>
             </ul>
           </div>
-
-          {/* Legal */}
-          <div className={styles.column}>
-            <h4 className={styles.columnTitle}>Informations</h4>
-            <ul className={styles.list}>
-              {footerLinks.legal.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className={styles.footerLink}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
-        {/* Bottom */}
         <div className={styles.bottom}>
-          <p className={styles.copyright}>
-            © {currentYear} {siteConfig.name}. Tous droits réservés.
-          </p>
-          <div className={styles.socials}>
-            <a href={siteConfig.social.facebook} aria-label="Facebook" className={styles.socialIcon}>
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href={siteConfig.social.twitter} aria-label="Twitter" className={styles.socialIcon}>
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
-            <a href={siteConfig.social.linkedin} aria-label="LinkedIn" className={styles.socialIcon}>
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
+          <p>© {currentYear} {siteConfig.name}. Tous droits réservés.</p>
+          <div className={styles.legal}>
+            <Link href="/mentions-legales">Mentions légales</Link>
+            <span className={styles.separator}>|</span>
+            <Link href="/confidentialite">Politique de confidentialité</Link>
           </div>
         </div>
       </div>

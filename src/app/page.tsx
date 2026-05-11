@@ -1,31 +1,27 @@
-import { siteConfig } from "@/features/shared/constants/site.config";
-import Button from "@/features/shared/components/Button";
+import Hero from "@/features/home/sections/Hero/Hero";
+import EventDetails from "@/features/home/sections/EventDetails/EventDetails";
+import About from "@/features/home/sections/About/About";
+import Stats from "@/features/home/sections/Stats/Stats";
+import SpeakersPreview from "@/features/home/sections/SpeakersPreview/SpeakersPreview";
+import InfoCards from "@/features/shared/components/InfoCards/InfoCards";
+import NewsletterBox from "@/features/shared/components/NewsletterBox/NewsletterBox";
 import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <div className={styles.home}>
-      {/* Hero Section Placeholder */}
-      <section className={styles.hero}>
-        <div className={styles.overlay} />
+      <Hero />
+      <EventDetails />
+      <About />
+      <Stats />
+      <SpeakersPreview />
+      <InfoCards />
+
+      <section className={styles.newsletterSection}>
         <div className="container">
-          <div className={styles.content}>
-            <span className={styles.date}>{siteConfig.event.dates}</span>
-            <h1 className={styles.title}>{siteConfig.event.title}</h1>
-            <p className={styles.subtitle}>{siteConfig.event.subtitle}</p>
-            <div className={styles.actions}>
-              <Button variant="gold" size="lg" href="/inscription">
-                S'inscrire au colloque
-              </Button>
-              <Button variant="outline" size="lg" href="/programme" className={styles.outlineBtn}>
-                Voir le programme
-              </Button>
-            </div>
-          </div>
+          <NewsletterBox />
         </div>
       </section>
-
-      {/* Other sections will be added here after receiving mockups */}
     </div>
   );
 }

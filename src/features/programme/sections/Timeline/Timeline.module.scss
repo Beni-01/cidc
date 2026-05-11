@@ -1,0 +1,172 @@
+@use '@/styles/variables' as *;
+
+.section {
+  padding: 4rem 0 8rem;
+  background-color: $white;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba($deep-green, 0.1);
+  transform: translateX(-50%);
+
+  @media (max-width: $bp-tablet) {
+    left: 20px;
+    transform: none;
+  }
+}
+
+.item {
+  position: relative;
+  width: 100%;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: $bp-tablet) {
+    justify-content: flex-start;
+    padding-left: 60px;
+  }
+}
+
+.timeTag {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -100%);
+  background-color: $white;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-full;
+  border: 1px solid rgba($deep-green, 0.1);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $deep-green;
+  margin-bottom: 1rem;
+  z-index: 5;
+
+  @media (max-width: $bp-tablet) {
+    left: 20px;
+    transform: translateY(-100%);
+  }
+}
+
+.card {
+  width: 42%;
+  background-color: #F8F9F8;
+  padding: 2rem;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-md;
+  }
+
+  &.left { margin-right: auto; }
+  &.right { margin-left: auto; }
+
+  @media (max-width: $bp-tablet) {
+    width: 100%;
+  }
+}
+
+.left { justify-content: flex-start; }
+.right { justify-content: flex-end; }
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.typeTag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.3rem 0.6rem;
+  border-radius: $radius-sm;
+  background-color: $deep-green;
+  color: $white;
+}
+
+.session .typeTag { background-color: $deep-green; }
+.break .typeTag { background-color: $text-muted; }
+.ceremony .typeTag { background-color: $gold; color: $deep-green; }
+.table-ronde .typeTag { background-color: #1a3a1a; }
+
+.timeRange {
+  font-size: 0.8rem;
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: 1.25rem;
+  color: $deep-green;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.cardDesc {
+  font-size: 0.9rem;
+  color: $text-secondary;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.speakers {
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba($black, 0.05);
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $gold;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.speakerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.speaker {
+  font-size: 0.85rem;
+  color: $deep-green;
+  font-weight: 500;
+  background-color: rgba($deep-green, 0.05);
+  padding: 0.2rem 0.5rem;
+  border-radius: $radius-sm;
+}
+
+.location {
+  font-size: 0.85rem;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

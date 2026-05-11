@@ -1,3 +1,4 @@
+@use "sass:color";
 @use '@/styles/variables' as *;
 
 .button {
@@ -35,7 +36,7 @@
   color: $deep-green;
   
   &:hover:not(:disabled) {
-    background-color: darken($cream-dark, 5%);
+    background-color: color.adjust($cream-dark, $lightness: -5%);
     transform: translateY(-2px);
   }
 }
@@ -58,6 +59,28 @@
   &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: $shadow-gold;
+  }
+}
+
+.dark {
+  background-color: $deep-green;
+  color: $white;
+  
+  &:hover:not(:disabled) {
+    background-color: color.adjust($deep-green, $lightness: -5%);
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.white {
+  background-color: $white;
+  color: $deep-green;
+  
+  &:hover:not(:disabled) {
+    background-color: $cream;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
   }
 }
 

@@ -1,129 +1,128 @@
 @use '@/styles/variables' as *;
 
 .footer {
-  position: relative;
-  background: $deep-green-dark;
-  color: rgba($white, 0.8);
-}
-
-.topBorder {
-  height: 3px;
-  background: $gradient-gold;
+  background-color: $deep-green;
+  color: $white;
+  padding: 5rem 0 1.5rem;
+  font-family: $font-body;
 }
 
 .container {
   max-width: $container-max-width;
   margin: 0 auto;
-  padding: 4rem $section-padding-x 2rem;
-
-  @media (max-width: $bp-mobile) {
-    padding: 3rem 1rem 1.5rem;
-  }
+  padding: 0 $section-padding-x;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
 
   @media (max-width: $bp-desktop) {
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
   }
 
-  @media (max-width: $bp-mobile) {
+  @media (max-width: $bp-tablet) {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
   }
 }
 
-// ─── Brand ────────────────────────────────────────────────
-
-.brand {
-  max-width: 320px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.logoIcon {
-  font-size: 1.75rem;
-}
-
-.logoTitle {
-  font-family: $font-heading;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: $gold;
-}
-
-.logoSubtitle {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgba($white, 0.5);
+.footerLogo {
+  filter: brightness(0) invert(1);
+  margin-bottom: 1.5rem;
+  height: 45px;
+  width: auto;
 }
 
 .description {
-  font-size: 0.85rem;
-  line-height: 1.7;
-  color: rgba($white, 0.6);
-}
-
-// ─── Columns ──────────────────────────────────────────────
-
-.columnTitle {
-  font-family: $font-heading;
-  font-size: 1rem;
-  font-weight: 600;
-  color: $gold;
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.5px;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.footerLink {
-  font-size: 0.85rem;
-  color: rgba($white, 0.65);
-  transition: all $transition-base;
-
-  &:hover {
-    color: $gold;
-    padding-left: 4px;
-  }
-}
-
-.contactItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: rgba($white, 0.65);
-}
-
-.contactIcon {
-  flex-shrink: 0;
+  color: rgba($white, 0.7);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 350px;
   font-size: 0.9rem;
 }
 
-// ─── Bottom ───────────────────────────────────────────────
+.socials {
+  display: flex;
+  gap: 1rem;
+}
 
-.bottom {
+.socialLink {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba($white, 0.2);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+  justify-content: center;
+  color: $white;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: $gold;
+    border-color: $gold;
+    transform: translateY(-3px);
+  }
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: $white;
+  letter-spacing: 1px;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+
+  a {
+    color: rgba($white, 0.7);
+    font-size: 0.9rem;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $gold;
+    }
+  }
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  li {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: rgba($white, 0.7);
+    align-items: flex-start;
+
+    a {
+      color: inherit;
+      transition: color $transition-base;
+      &:hover { color: $gold; }
+    }
+  }
+}
+
+.icon {
+  color: $gold;
+}
+
+.bottom {
   border-top: 1px solid rgba($white, 0.1);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: rgba($white, 0.5);
 
   @media (max-width: $bp-tablet) {
     flex-direction: column;
@@ -132,30 +131,13 @@
   }
 }
 
-.copyright {
-  font-size: 0.8rem;
-  color: rgba($white, 0.4);
-}
-
-.socials {
+.legal {
   display: flex;
   gap: 1rem;
+
+  a:hover { color: $white; }
 }
 
-.socialIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba($white, 0.15);
-  color: rgba($white, 0.6);
-  transition: all $transition-base;
-
-  &:hover {
-    color: $gold;
-    border-color: $gold;
-    transform: translateY(-2px);
-  }
+.separator {
+  opacity: 0.3;
 }

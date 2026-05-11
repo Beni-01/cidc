@@ -2,80 +2,93 @@
 
 .hero {
   position: relative;
-  padding: 12rem 0 6rem;
-  background-color: $deep-green;
+  background-color: $white;
+  padding-top: 140px;
+  padding-bottom: 4rem;
   overflow: hidden;
-  color: $white;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, rgba($deep-green-dark, 0.9), rgba($deep-green, 0.7));
-  z-index: 1;
-}
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
 
-.bgImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
-  z-index: 0;
+  @media (max-width: $bp-desktop) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
 
 .content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
+  z-index: 10;
+}
+
+.tagline {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $gold;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 .title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  margin-bottom: 1.5rem;
-  animation: fadeInUp 0.8s ease forwards;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  color: $deep-green;
+  margin-bottom: 2rem;
+  font-family: $font-heading;
+  font-weight: 800;
 }
 
 .description {
-  max-width: 700px;
-  margin: 0 auto 2.5rem;
   font-size: 1.1rem;
-  opacity: 0.9;
-  animation: fadeInUp 0.8s ease 0.1s forwards opacity(0);
-}
+  color: $text-secondary;
+  line-height: 1.6;
+  max-width: 500px;
 
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  animation: fadeInUp 0.8s ease 0.2s forwards opacity(0);
-}
-
-.separator {
-  color: $gold;
-  opacity: 0.5;
-}
-
-.active {
-  color: $gold;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  @media (max-width: $bp-desktop) {
+    margin: 0 auto;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+}
+
+.visual {
+  position: relative;
+  height: 400px;
+
+  @media (max-width: $bp-desktop) {
+    display: none; // Match home layout where visual is hidden or changed on mobile
   }
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: calc(100% + 100px);
+  height: 100%;
+  background-color: $deep-green;
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 1;
+}
+
+.image {
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.patternDots {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  background-image: radial-gradient(rgba($white, 0.2) 2px, transparent 2px);
+  background-size: 15px 15px;
+  z-index: 2;
 }

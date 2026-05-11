@@ -1,23 +1,30 @@
 export const siteConfig = {
   name: "Colloque International de Droit Constitutionnel",
-  shortName: "CIDC 2026",
+  shortName: "CIDC 2025",
   description:
-    "Colloque international sur les enjeux contemporains du droit constitutionnel — Échanges académiques, recherches et perspectives juridiques.",
+    "Un rendez-vous international dédié aux enjeux contemporains du droit constitutionnel et à la consolidation de l'État de droit.",
   url: "https://colloque-droit-constitutionnel.org",
   locale: "fr-FR",
 
   event: {
-    title: "Colloque International de Droit Constitutionnel",
-    subtitle: "Les mutations contemporaines du constitutionnalisme",
-    dates: "12 – 14 Novembre 2026",
-    location: "Palais des Congrès, Kinshasa, RDC",
-    organizer: "Faculté de Droit — Université de Kinshasa",
+    title: "Comprendre. Débattre. Renforcer la Constitution.",
+    subtitle: "Un rendez-vous international dédié aux enjeux contemporains du droit constitutionnel et à la consolidation de l'État de droit.",
+    edition: "ÉDITION 2025",
+    dates: "15 – 17 SEPT. 2025",
+    location: "Yaoundé, Cameroun",
+    organizer: "Comité International de Droit Constitutionnel",
+    stats: {
+      days: "03",
+      sessions: "24",
+      speakers: "60+",
+      participants: "500+",
+    }
   },
 
   contact: {
     email: "contact@colloque-droit-constitutionnel.org",
-    phone: "+243 812 345 678",
-    address: "Université de Kinshasa, Faculté de Droit, Kinshasa, RDC",
+    phone: "+237 6 12 34 56 78",
+    address: "Yaoundé, Cameroun",
   },
 
   social: {

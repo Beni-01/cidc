@@ -1,0 +1,72 @@
+@use '@/styles/variables' as *;
+
+.section {
+  padding: 4rem 0;
+  background-color: $white;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+}
+
+.box {
+  background-color: $deep-green;
+  border-radius: $radius-lg;
+  padding: 2.5rem 4rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  color: $white;
+
+  @media (max-width: $bp-desktop) {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem;
+    gap: 2rem;
+  }
+}
+
+.iconBox {
+  width: 60px;
+  height: 60px;
+  background-color: $gold;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  .icon {
+    font-size: 1.75rem;
+    filter: brightness(0) saturate(100%) invert(21%) sepia(26%) auto; // Make icon deep green
+  }
+}
+
+.content {
+  flex: 1;
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-family: $font-heading;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: rgba($white, 0.8);
+  }
+}
+
+.btn {
+  flex-shrink: 0;
+  padding: 1rem 2rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+
+  .arrow {
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+  }
+}

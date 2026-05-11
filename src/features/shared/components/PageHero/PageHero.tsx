@@ -1,25 +1,33 @@
+import Image from "next/image";
 import styles from "./PageHero.module.scss";
 
 interface PageHeroProps {
-  title: string;
-  description?: string;
-  image?: string;
+  title: string | React.ReactNode;
+  description: string | React.ReactNode;
+  tagline?: string;
+  image: string;
 }
 
-export default function PageHero({ title, description, image }: PageHeroProps) {
+export default function PageHero({ title, description, tagline, image }: PageHeroProps) {
   return (
     <section className={styles.hero}>
-      <div className={styles.overlay} />
-      {image && <div className={styles.bgImage} style={{ backgroundImage: `url(${image})` }} />}
-      
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.content}>
+          {tagline && <span className={styles.tagline}>{tagline}</span>}
           <h1 className={styles.title}>{title}</h1>
-          {description && <p className={styles.description}>{description}</p>}
-          <div className={styles.breadcrumb}>
-            <span>Accueil</span>
-            <span className={styles.separator}>/</span>
-            <span className={styles.active}>{title}</span>
+          <div className={styles.description}>{description}</div>
+        </div>
+        
+        <div className={styles.visual}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={image}
+              alt="Hero background"
+              fill
+              priority
+              className={styles.image}
+            />
+            <div className={styles.patternDots} />
           </div>
         </div>
       </div>

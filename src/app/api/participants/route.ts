@@ -6,15 +6,15 @@ const participantSchema = z.object({
   titre: z.enum(["Monsieur", "Madame"], {
     message: "Le titre est requis",
   }),
-  prenom: z.string().min(2, "Le prénom est requis"),
-  nom: z.string().min(2, "Le nom est requis"),
-  telephone: z.string().min(8, "Numéro de téléphone invalide"),
-  email: z.string().email("Email invalide"),
-  profession: z.string().min(2, "La profession est requise"),
-  fonction: z.string().min(2, "La fonction est requise"),
-  organisation: z.string().min(2, "L'organisation est requise"),
-  ville: z.string().min(2, "La ville est requise"),
-  niveauEtude: z.string().min(2, "Le niveau d'étude est requis"),
+  prenom: z.string().min(2, { message: "Le prénom est requis" }),
+  nom: z.string().min(2, { message: "Le nom est requis" }),
+  telephone: z.string().min(8, { message: "Numéro de téléphone invalide" }),
+  email: z.email({ message: "Email invalide" }),
+  profession: z.string().min(2, { message: "La profession est requise" }),
+  fonction: z.string().min(2, { message: "La fonction est requise" }),
+  organisation: z.string().min(2, { message: "L'organisation est requise" }),
+  ville: z.string().min(2, { message: "La ville est requise" }),
+  niveauEtude: z.string().min(2, { message: "Le niveau d'étude est requis" }),
 });
 
 export async function POST(req: Request) {

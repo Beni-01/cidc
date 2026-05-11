@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.shortName}`,
   },
   description: siteConfig.seo.description,
-  keywords: siteConfig.seo.keywords,
+  keywords: [...siteConfig.seo.keywords],
   authors: [{ name: siteConfig.event.organizer }],
   openGraph: {
     title: siteConfig.seo.title,

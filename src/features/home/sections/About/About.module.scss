@@ -1,0 +1,85 @@
+@use '@/styles/variables' as *;
+
+.about {
+  padding: 8rem 0;
+  background-color: $white;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: center;
+
+  @media (max-width: $bp-desktop) {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+.visual {
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 500px;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-xl;
+  z-index: 2;
+
+  @media (max-width: $bp-tablet) {
+    height: 350px;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.dotPattern {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background-image: radial-gradient($gold 2px, transparent 2px);
+  background-size: 15px 15px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: $gold;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: $deep-green;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 1.05rem;
+  color: $text-secondary;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
