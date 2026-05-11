@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+
+@use './variables' as *;
+@use './animations';
+
+// ─── Reset & Base ─────────────────────────────────────────
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-body;
+  color: $text-primary;
+  background-color: $cream;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $deep-green;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+h4 { font-size: clamp(1.1rem, 2.5vw, 1.35rem); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color $transition-base;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+// ─── Utility classes ──────────────────────────────────────
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+
+  @media (max-width: $bp-mobile) {
+    padding: 0 1rem;
+  }
+}
+
+.section {
+  padding: $section-padding-y 0;
+
+  @media (max-width: $bp-tablet) {
+    padding: 3rem 0;
+  }
+}
+
+.section-cream {
+  background-color: $cream;
+}
+
+.section-white {
+  background-color: $white;
+}
+
+.section-dark {
+  background: $gradient-hero;
+  color: $text-light;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-light;
+  }
+}
+
+.gold-accent {
+  color: $gold;
+}
+
+.gold-line {
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: $gradient-gold;
+  border-radius: 2px;
+}
+
+.gold-line-center {
+  @extend .gold-line;
+  margin: 0.75rem auto 0;
+}
+
+// ─── Selection ────────────────────────────────────────────
+
+::selection {
+  background-color: rgba($gold, 0.3);
+  color: $deep-green;
+}
+
+// ─── Scrollbar ────────────────────────────────────────────
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $cream;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $deep-green-light;
+  border-radius: 4px;
+
+  &:hover {
+    background: $deep-green;
+  }
+}
+
+// ─── Focus styles ─────────────────────────────────────────
+
+:focus-visible {
+  outline: 2px solid $gold;
+  outline-offset: 2px;
+  border-radius: $radius-sm;
+}

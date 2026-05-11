@@ -1,0 +1,202 @@
+@use '@/styles/variables' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all $transition-base;
+  background: transparent;
+
+  &.scrolled {
+    background: rgba($deep-green, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 0.6rem 0;
+    box-shadow: $shadow-lg;
+  }
+}
+
+.nav {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding-x;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ─── Logo ─────────────────────────────────────────────────
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  z-index: 1001;
+}
+
+.logoIcon {
+  font-size: 1.75rem;
+  filter: drop-shadow(0 0 6px rgba($gold, 0.4));
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logoTitle {
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: $gold;
+  letter-spacing: 0.5px;
+}
+
+.logoSubtitle {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba($white, 0.7);
+  font-weight: 500;
+}
+
+// ─── Links ────────────────────────────────────────────────
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+
+  @media (max-width: $bp-desktop) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    background: rgba($deep-green-dark, 0.98);
+    backdrop-filter: blur(20px);
+    transform: translateX(100%);
+    transition: transform $transition-slow;
+    z-index: 1000;
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.link {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba($white, 0.85);
+  border-radius: $radius-full;
+  transition: all $transition-base;
+  letter-spacing: 0.3px;
+
+  &:hover {
+    color: $gold;
+    background: rgba($white, 0.05);
+  }
+
+  &.active {
+    color: $gold;
+    background: rgba($gold, 0.1);
+  }
+
+  @media (max-width: $bp-desktop) {
+    font-size: 1.25rem;
+    padding: 0.75rem 2rem;
+  }
+}
+
+// ─── CTA Button ───────────────────────────────────────────
+
+.ctaDesktop {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $deep-green;
+  background: $gradient-gold;
+  border-radius: $radius-full;
+  transition: all $transition-base;
+  letter-spacing: 0.3px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-gold;
+  }
+
+  @media (max-width: $bp-desktop) {
+    display: none;
+  }
+}
+
+.ctaMobile {
+  display: none;
+
+  @media (max-width: $bp-desktop) {
+    display: block;
+    margin-top: 1rem;
+  }
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $deep-green;
+  background: $gradient-gold;
+  border-radius: $radius-full;
+}
+
+// ─── Burger ───────────────────────────────────────────────
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  z-index: 1001;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: $white;
+    border-radius: 2px;
+    transition: all $transition-base;
+  }
+
+  &.burgerOpen {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+
+  @media (max-width: $bp-desktop) {
+    display: flex;
+  }
+}

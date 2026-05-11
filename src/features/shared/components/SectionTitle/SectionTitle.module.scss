@@ -1,0 +1,50 @@
+@use '@/styles/variables' as *;
+
+.wrapper {
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+
+  .line {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $gold;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.title {
+  margin-bottom: 1.25rem;
+  max-width: 800px;
+}
+
+.line {
+  width: 80px;
+  height: 4px;
+  background: $gradient-gold;
+  border-radius: $radius-full;
+}
+
+.light {
+  .title {
+    color: $white;
+  }
+}
