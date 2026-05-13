@@ -7,24 +7,24 @@ const cards = [
     description: "Accédez aux actes, études, rapports et analyses sur le droit constitutionnel.",
     linkText: "EXPLORER LES RESSOURCES",
     linkUrl: "/ressources",
-    icon: "📖", // Placeholder for actual icon/svg
-    variant: "dark", // Dark green
+    icon: "📖", 
+    variant: "dark",
   },
   {
     title: "Programme",
     description: "Découvrez le programme complet : sessions, ateliers, tables rondes et événements spéciaux.",
     linkText: "CONSULTER LE PROGRAMME",
     linkUrl: "/programme",
-    icon: "👥",
-    variant: "gold", // Gold gradient/bg
+    icon: "🏛️",
+    variant: "gold",
   },
   {
     title: "Réseau",
     description: "Rejoignez une communauté internationale engagée pour le renforcement de la culture constitutionnelle.",
     linkText: "REJOINDRE LE RÉSEAU",
-    linkUrl: "/contact", // Or a specific network page
+    linkUrl: "/contact",
     icon: "🌐",
-    variant: "light", // Light cream/grey with dot pattern
+    variant: "light",
   },
 ];
 

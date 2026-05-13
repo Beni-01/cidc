@@ -1,7 +1,7 @@
 @use '@/styles/variables' as *;
 
 .about {
-  padding: 8rem 0;
+  padding: 5rem 0;
   background-color: $white;
 }
 
@@ -18,6 +18,10 @@
     grid-template-columns: 1fr;
     gap: 4rem;
   }
+}
+
+.visualWrapper {
+  width: 100%;
 }
 
 .visual {
@@ -53,6 +57,23 @@
   z-index: 1;
 }
 
+.dotPatternBottom {
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  background-image: radial-gradient($deep-green 2px, transparent 2px);
+  background-size: 12px 12px;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.contentWrapper {
+  width: 100%;
+  position: relative;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -81,5 +102,22 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.dotPatternRight {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 160px;
+  background-image: radial-gradient(rgba($gold, 0.4) 2px, transparent 2px);
+  background-size: 14px 14px;
+  opacity: 0.25;
+  z-index: 0;
+
+  @media (max-width: $bp-desktop) {
+    display: none;
   }
 }

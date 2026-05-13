@@ -40,7 +40,10 @@ export async function POST(req: Request) {
     }
 
     const participant = await prisma.participant.create({
-      data: validatedData,
+      data: {
+        ...validatedData,
+        refTransaction: `REG-${crypto.randomUUID()}`,
+      },
     });
 
     return NextResponse.json(participant, { status: 201 });

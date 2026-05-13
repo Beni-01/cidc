@@ -6,12 +6,13 @@
 }
 
 .newsletterSection {
-  padding: 0 0 6rem; // bottom padding to separate from footer
+  padding: 0 0 3rem; // bottom padding to separate from footer
   background-color: $white;
   
   :global(.container) {
     max-width: $container-max-width;
     margin: 0 auto;
     padding: 0 $section-padding-x;
+    
   }
 }

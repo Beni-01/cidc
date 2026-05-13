@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/features/shared/components/Navbar";
 import Footer from "@/features/shared/components/Footer";
+import PagePulse from "@/features/shared/components/PagePulse";
 import { siteConfig } from "@/features/shared/constants/site.config";
 import "@/styles/globals.scss";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased">
+        <PagePulse />
         <Navbar />
         <main className="min-h-screen">
           {children}

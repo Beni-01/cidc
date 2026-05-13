@@ -3,6 +3,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
 
+// ─── Layout rhythm ────────────────────────────────────────
+
+:root {
+  --page-gutter: clamp(0.9rem, 2.2vw, 2rem);
+}
+
 // ─── Reset & Base ─────────────────────────────────────────
 
 *,
@@ -25,6 +31,7 @@ body {
   background-color: $cream;
   line-height: 1.6;
   overflow-x: hidden;
+  
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -75,10 +82,10 @@ ul, ol {
   width: 100%;
   max-width: $container-max-width;
   margin: 0 auto;
-  padding: 0 $section-padding-x;
+  padding: 0 var(--page-gutter);
 
   @media (max-width: $bp-mobile) {
-    padding: 0 1rem;
+    padding: 0 var(--page-gutter);
   }
 }
 

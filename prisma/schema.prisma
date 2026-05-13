@@ -31,3 +31,45 @@ model Participant {
   
   @@map("participants")
 }
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  email     String
+  telephone String?
+  sujet     String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contact_messages")
+}
+
+model NewsletterSubscription {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("newsletter_subscriptions")
+}
+
+model Article {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  category  String
+  date      String
+  readTime  String
+  title     String
+  excerpt   String
+  image     String
+  intro     String
+  body      String
+  quote     String
+  author    String
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("articles")
+}

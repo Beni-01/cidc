@@ -1,102 +1,254 @@
-@use "sass:color";
 @use '@/styles/variables' as *;
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   height: 90px;
   background-color: $white;
-  z-index: 1000;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   border-bottom: 1px solid rgba($black, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+  @media (max-width: $bp-tablet) {
+    height: 82px;
+  }
 }
 
 .container {
-  max-width: $container-max-width;
-  margin: 0 auto;
-  padding: 0 $section-padding-x;
+  max-width: 1680px;
   width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 2vw, 2rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: $bp-tablet) {
+    padding: 0 1.45rem;
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: 0 1.1rem;
+  }
 }
 
 .logo {
   display: flex;
   align-items: center;
-}
+  gap: 1rem;
+  text-decoration: none;
 
-.logoImg {
-  height: 65px;
-  width: auto;
-  object-fit: contain;
+  .templeIcon {
+    width: 42px;
+    height: 42px;
+    color: $deep-green;
+    
+    svg { width: 100%; height: 100%; }
+  }
+
+  .logoText {
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0A2619;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+    p {
+      font-size: 0.75rem;
+      color: $text-muted;
+      font-weight: 600;
+      margin: 0.1rem 0 0 0;
+    }
+
+    @media (max-width: $bp-mobile) {
+      h3 {
+        font-size: 0.78rem;
+      }
+
+      p {
+        font-size: 0.62rem;
+      }
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    gap: 0.7rem;
+
+    .templeIcon {
+      width: 34px;
+      height: 34px;
+    }
+  }
 }
 
 .menu {
   display: flex;
-  gap: 2.5rem;
+  align-items: center;
+  gap: clamp(1.2rem, 1.7vw, 2rem);
 
   @media (max-width: $bp-desktop) {
-    display: none; // Add mobile menu later if needed
+    display: none;
   }
 }
 
 .link {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: $deep-green;
   text-decoration: none;
+  color: #0A2619;
+  font-size: 0.9rem;
+  font-weight: 600;
   transition: color $transition-base;
-  position: relative;
-  padding-bottom: 4px;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: $gold;
-    transition: width $transition-base;
-  }
-
-  &:hover {
+  &:hover, &.active {
     color: $gold;
-    &::after {
-      width: 100%;
-    }
-  }
-
-  &.active {
-    color: $gold;
-    &::after {
-      width: 100%;
-    }
   }
 }
 
 .actions {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
 }
 
 .registerBtn {
-  background-color: $deep-green !important;
+  background-color: #0A2619 !important;
   color: $white !important;
-  border-radius: $radius-sm !important;
   padding: 0.75rem 1.5rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   font-size: 0.85rem !important;
-  letter-spacing: 1px !important;
+  border-radius: $radius-sm !important;
+  border: none !important;
 
   &:hover {
-    background-color: color.adjust($deep-green, $lightness: 5%) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($deep-green, 0.2);
+    background-color: $deep-green !important;
+  }
+
+  @media (max-width: $bp-mobile) {
+    display: none !important;
+  }
+}
+
+.menuToggle {
+  width: 46px;
+  height: 46px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba($deep-green, 0.16);
+  background: $white;
+  color: $deep-green;
+
+  span {
+    width: 21px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  &.open {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  @media (max-width: $bp-desktop) {
+    display: flex;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 98;
+  display: none;
+  background: rgba($deep-green-dark, 0.34);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: $bp-desktop) {
+    display: block;
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  width: min(86vw, 390px);
+  display: none;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 6.5rem 1.25rem 1.5rem;
+  border-left: 1px solid rgba($deep-green, 0.12);
+  background:
+    linear-gradient(180deg, rgba($white, 0.98), rgba($cream-light, 0.98)),
+    radial-gradient(circle at 100% 0, rgba($gold, 0.14), transparent 34%);
+  box-shadow: -24px 0 60px rgba($black, 0.16);
+  transform: translateX(105%);
+  opacity: 1;
+  pointer-events: none;
+  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.show {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  @media (max-width: $bp-desktop) {
+    display: flex;
+  }
+
+  @media (max-width: $bp-mobile) {
+    width: min(88vw, 340px);
+    padding-inline: 1rem;
+  }
+}
+
+.mobileEyebrow {
+  display: block;
+  margin: 0 0 1rem;
+  color: $gold-dark;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mobileLink {
+  padding: 1rem 1rem;
+  border-radius: $radius-md;
+  color: #0A2619;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background $transition-base, border-color $transition-base, color $transition-base, transform $transition-base;
+
+  &:hover,
+  &.active {
+    color: $gold;
+    background: rgba($gold, 0.09);
+    border-color: rgba($gold, 0.16);
+    transform: translateX(4px);
   }
 }

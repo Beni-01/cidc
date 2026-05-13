@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Button from "@/features/shared/components/Button";
-import { siteConfig } from "@/features/shared/constants/site.config";
 import styles from "./Hero.module.scss";
 
 export default function Hero() {
@@ -8,42 +7,43 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.content}>
-          <span className={styles.edition}>{siteConfig.event.edition}</span>
+          <span className={styles.edition}>ÉDITION 2025</span>
           <h1 className={styles.title}>
-            Comprendre. <br />
-            Débattre. <br />
-            Renforcer la <span className={styles.highlight}>Constitution.</span>
+            Comprendre.<br />
+            Débattre.<br />
+            Renforcer la<br />
+            Constitution.
           </h1>
-          <p className={styles.description}>{siteConfig.event.subtitle}</p>
+          <div className={styles.underline} />
+          <p className={styles.description}>
+            Un rendez-vous international dédié aux enjeux contemporains du droit constitutionnel et à la consolidation de l&apos;État de droit.
+          </p>
           <div className={styles.actions}>
-            <Button variant="dark" size="lg" href="/about">
-              DÉCOUVRIR LE COLLOQUE <span>→</span>
+            <Button variant="gold" size="lg" href="/about" className={styles.btn}>
+              DÉCOUVRIR LE COLLOQUE <span className={styles.arrow}>→</span>
             </Button>
           </div>
         </div>
 
         <div className={styles.visual}>
+          <div className={styles.angledBg} />
           <div className={styles.imageWrapper}>
             <Image
               src="/images/hero-gavel.webp"
-              alt="Constitution Law"
+              alt="Gavel and Constitution"
               fill
               priority
+              sizes="(max-width: 1024px) 100vw, 58vw"
               className={styles.image}
             />
-            
-            {/* Circular badge from mockup */}
-            <div className={styles.badge}>
-              <div className={styles.badgeCircle}>
-                <div className={styles.badgeText}>
-                  <span>DROIT • JUSTICE •</span>
-                  <span>CONSTITUTION</span>
-                </div>
-                <div className={styles.badgeIcon}>⚖</div>
-              </div>
+          </div>
+          <div className={styles.decoration}>
+            <div className={styles.dots} />
+            <div className={styles.columnIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 22h20M4 22V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17M8 7v10M12 7v10M16 7v10M4 7h16" />
+              </svg>
             </div>
-
-            <div className={styles.patternDots} />
           </div>
         </div>
       </div>

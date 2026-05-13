@@ -1,13 +1,13 @@
 @use '@/styles/variables' as *;
 
 .box {
-  background-color: #F8F9F8; // Light beige/grey from mockup
+  background-color: #F9FAF9; 
   border-radius: $radius-lg;
   padding: 3rem 4rem;
   display: flex;
   align-items: center;
   gap: 3rem;
-  box-shadow: $shadow-sm;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
 
   @media (max-width: $bp-desktop) {
     flex-direction: column;
@@ -27,9 +27,10 @@
   justify-content: center;
   flex-shrink: 0;
 
-  .icon {
-    font-size: 2rem;
-    color: $white;
+  .svgIcon {
+    width: 32px;
+    height: 32px;
+    color: $gold; // Gold icon as in mockup
   }
 }
 
@@ -56,32 +57,66 @@
 
 .form {
   display: flex;
-  gap: 1rem;
-  flex: 1.5;
-  max-width: 500px;
+  gap: 0.75rem;
+  flex: 1;
+  max-width: 600px;
   width: 100%;
+  align-items: flex-start;
 
   @media (max-width: $bp-tablet) {
     flex-direction: column;
   }
 }
 
-.input {
+.field {
   flex: 1;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  min-height: 52px;
   padding: 1rem 1.5rem;
-  border: 1px solid rgba($black, 0.1);
+  border: 1px solid rgba($black, 0.05);
+  background-color: $white;
   border-radius: $radius-sm;
   font-family: $font-body;
   font-size: 0.95rem;
   outline: none;
-  transition: border-color $transition-base;
+  transition: all $transition-base;
 
   &:focus {
-    border-color: $gold;
+    border-color: $deep-green;
+    box-shadow: 0 0 0 4px rgba($deep-green, 0.05);
+  }
+}
+
+.message {
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.35;
+
+  &.success {
+    color: $deep-green-light;
+  }
+
+  &.error {
+    color: #b42318;
   }
 }
 
 .submit {
   flex-shrink: 0;
   white-space: nowrap;
+  background-color: #0A2619 !important;
+  color: $white !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px;
+  padding: 0 2.5rem !important;
+  min-height: 52px;
+
+  @media (max-width: $bp-tablet) {
+    width: 100%;
+  }
 }

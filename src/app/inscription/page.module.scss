@@ -1,11 +1,113 @@
 @use '@/styles/variables' as *;
 
 .page {
-  display: flex;
-  flex-direction: column;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 92% 70%, rgba($deep-green, 0.07) 0 1px, transparent 1.5px) 0 0 / 22px 22px,
+    linear-gradient(180deg, $white 0%, #fbfaf7 58%, $white 100%);
 }
 
-.newsletterSection {
-  padding: 0 0 6rem;
-  background-color: $white;
+.hero {
+  min-height: 430px;
+  display: grid;
+  grid-template-columns: 1.22fr 1fr;
+  background: #063d2d;
+  overflow: hidden;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heroContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 4rem max(2rem, calc((100vw - 1200px) / 2 + 1rem));
+  color: $white;
+  background:
+    radial-gradient(circle at 20% 50%, rgba($gold, 0.12), transparent 26%),
+    linear-gradient(90deg, rgba(#063d2d, 0.98), rgba(#063d2d, 0.9));
+
+  @media (max-width: $bp-tablet) {
+    padding: 3.4rem 1.25rem;
+  }
+}
+
+.tagline {
+  display: block;
+  color: $gold;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  margin-bottom: 1.7rem;
+}
+
+.heroContent h1 {
+  color: $white;
+  font-size: clamp(2.4rem, 3.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.14;
+  margin-bottom: 1.7rem;
+
+  span {
+    color: $gold;
+  }
+}
+
+.heroContent i {
+  display: block;
+  width: 58px;
+  height: 3px;
+  background: $gold;
+  margin-bottom: 1.9rem;
+}
+
+.heroContent p {
+  max-width: 500px;
+  color: rgba($white, 0.88);
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+.heroVisual {
+  position: relative;
+  min-height: 430px;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+
+  @media (max-width: $bp-tablet) {
+    min-height: 260px;
+    clip-path: none;
+  }
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.dots {
+  position: absolute;
+  z-index: 2;
+  top: 70px;
+  left: 28px;
+  width: 100px;
+  height: 120px;
+  background-image: radial-gradient(rgba($gold, 0.85) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+
+  @media (max-width: $bp-tablet) {
+    display: none;
+  }
+}
+
+.formReveal {
+  display: block;
+  margin-top: -3.7rem;
+  position: relative;
+  z-index: 4;
+
+  @media (max-width: $bp-tablet) {
+    margin-top: -2rem;
+  }
 }

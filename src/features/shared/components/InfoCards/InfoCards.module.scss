@@ -2,7 +2,7 @@
 @use '@/styles/variables' as *;
 
 .section {
-  padding: 4rem 0 6rem;
+  padding: 3rem 0;
   background-color: $white;
 }
 
@@ -45,59 +45,44 @@
     background-color: $deep-green;
     color: $white;
     box-shadow: $shadow-lg;
+    background-image: linear-gradient(to right, rgba($deep-green, 0.95) 40%, rgba($deep-green, 0.4) 100%), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=600');
+    background-size: cover;
+    background-position: right center;
 
     .icon { filter: brightness(0) invert(1); opacity: 0.8; }
     .title { color: $white; }
     .description { color: rgba($white, 0.8); }
     .link { color: $gold; }
-    
-    // Decoration
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      right: -10%;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-    }
   }
 
   // Variant: gold
   &.gold {
     background: linear-gradient(135deg, color.adjust($gold, $lightness: 15%), $gold);
-    color: $deep-green;
+    color: $white;
     box-shadow: $shadow-md;
+    background-image: linear-gradient(to right, rgba($gold-dark, 0.9) 40%, rgba($gold-dark, 0.2) 100%), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600');
+    background-size: cover;
+    background-position: right center;
 
-    .icon { opacity: 0.9; filter: contrast(1.5); }
-    .title { color: $deep-green; }
-    .description { color: rgba($deep-green, 0.85); }
+    .icon { opacity: 0.9; filter: brightness(0) invert(1); }
+    .title { color: $white; }
+    .description { color: rgba($white, 0.9); }
     .link { color: $white; }
   }
 
   // Variant: light
   &.light {
-    background-color: #F8F9F8;
-    color: $text-primary;
+    background-color: #DBDFD8;
+    color: $deep-green;
     box-shadow: $shadow-sm;
-    border: 1px solid rgba($black, 0.05);
+    background-image: linear-gradient(to right, rgba(#DBDFD8, 0.95) 50%, rgba(#DBDFD8, 0.3) 100%), url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=600');
+    background-size: cover;
+    background-position: right center;
 
-    .icon { filter: grayscale(1); opacity: 0.5; }
+    .icon { opacity: 0.7; filter: contrast(1.2); }
     .title { color: $deep-green; }
-    .description { color: $text-secondary; }
+    .description { color: rgba($deep-green, 0.8); }
     .link { color: $deep-green; font-weight: 700; }
-    
-    // Dot pattern
-    &::before {
-      content: '';
-      position: absolute;
-      top: 10%;
-      right: 10%;
-      width: 100px;
-      height: 100px;
-      background-image: radial-gradient(rgba($deep-green, 0.1) 2px, transparent 2px);
-      background-size: 15px 15px;
-    }
   }
 }
 

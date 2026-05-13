@@ -15,5 +15,5 @@ export interface Participant {
 
 export interface ApiResponse<T> {
   data?: T;
-  error?: string | any[];
+  error?: string | unknown[];
 }

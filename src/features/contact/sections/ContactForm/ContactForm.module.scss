@@ -1,160 +1,212 @@
 @use '@/styles/variables' as *;
 
 .section {
-  padding: 8rem 0;
-  background-color: $white;
+  padding: 3.5rem 0 2rem;
+  background: $white;
 }
 
 .container {
-  max-width: $container-max-width;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 $section-padding-x;
 }
 
-.grid {
+.topGrid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 6rem;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 
   @media (max-width: $bp-desktop) {
     grid-template-columns: 1fr;
-    gap: 4rem;
   }
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
+.mapCard,
+.infoCard,
+.formCard {
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba($black, 0.08);
 }
 
-.title {
-  font-size: 2.25rem;
-  color: $deep-green;
-  margin-bottom: 1.5rem;
-  font-family: $font-heading;
+.mapCard {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba($white, 0.9), rgba($white, 0.65)),
+    repeating-linear-gradient(35deg, rgba($deep-green, 0.08) 0 1px, transparent 1px 34px),
+    #eef3f2;
 }
 
-.desc {
-  font-size: 1.1rem;
-  color: $text-secondary;
-  line-height: 1.6;
-  margin-bottom: 3.5rem;
+.hotelCard {
+  position: absolute;
+  top: 1.4rem;
+  left: 1.4rem;
+  z-index: 2;
+  width: 260px;
+  padding: 1.5rem;
+  border-radius: 9px;
+  color: $white;
+  background: linear-gradient(135deg, #063d2d, #174333);
+
+  strong,
+  span,
+  small {
+    display: block;
+  }
+
+  strong {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+  }
+
+  span {
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.mapPin {
+  position: absolute;
+  left: 55%;
+  top: 48%;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: $white;
+  background: radial-gradient(circle, $deep-green 0 34%, rgba($gold, 0.16) 35% 100%);
+  box-shadow: 0 0 0 18px rgba($gold, 0.1);
+}
+
+.infoCard {
+  padding: 2.6rem 2.2rem;
+  background: linear-gradient(135deg, #f7fbfa, #edf4f2);
+
+  h2 {
+    color: $deep-green;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 0.7rem;
+  }
+
+  > p {
+    color: $text-secondary;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
 }
 
 .contactItem {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 
-  .icon {
-    width: 50px;
-    height: 50px;
-    background-color: rgba($deep-green, 0.05);
-    color: $deep-green;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    flex-shrink: 0;
+  > span {
+    color: $gold-dark;
+    font-size: 1.65rem;
   }
 
   strong {
-    display: block;
-    font-size: 1.1rem;
     color: $deep-green;
-    margin-bottom: 0.5rem;
   }
 
   p {
-    font-size: 0.95rem;
-    color: $text-secondary;
-    line-height: 1.5;
+    white-space: pre-line;
+    color: #17291f;
+    line-height: 1.55;
+    margin-top: 0.3rem;
   }
 }
 
-.formWrapper {
-  background-color: #F8F9F8;
-  padding: 4rem;
-  border-radius: $radius-xl;
-  box-shadow: $shadow-md;
+.socials {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 
-  @media (max-width: $bp-tablet) {
-    padding: 2.5rem 1.5rem;
+  a {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: $white;
+    background: $deep-green;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
   }
 }
 
-.formTitle {
-  font-size: 1.75rem;
-  color: $deep-green;
-  margin-bottom: 3rem;
-  font-family: $font-heading;
+.formCard {
   position: relative;
+  overflow: hidden;
+  padding: 2.4rem;
+  background: linear-gradient(135deg, #fff, #fbfaf7);
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background-color: $gold;
+  h2 {
+    color: $deep-green;
+    font-size: clamp(1.7rem, 4vw, 2.2rem);
+    margin-bottom: 1.6rem;
   }
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-.row {
+.row3 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
 
   @media (max-width: $bp-tablet) {
     grid-template-columns: 1fr;
   }
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+.form input,
+.form textarea {
+  width: 100%;
+  border: 1px solid rgba($deep-green, 0.14);
+  border-radius: 6px;
+  background: $white;
+  padding: 1rem 1.1rem;
+  color: #17291f;
+  font: inherit;
 
-  label {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: $deep-green;
-  }
-
-  input, textarea {
-    padding: 1rem 1.25rem;
-    border: 1px solid rgba($black, 0.1);
-    border-radius: $radius-sm;
-    font-family: $font-body;
-    font-size: 1rem;
-    background-color: $white;
-    transition: all $transition-base;
-
-    &:focus {
-      outline: none;
-      border-color: $gold;
-      box-shadow: 0 0 0 4px rgba($gold, 0.05);
-    }
+  &:focus {
+    outline: none;
+    border-color: $gold-dark;
+    box-shadow: 0 0 0 4px rgba($gold, 0.1);
   }
 }
 
 .submit {
   align-self: flex-start;
-  margin-top: 1rem;
-  padding: 1rem 2.5rem !important;
-  font-weight: 700 !important;
+  min-width: 270px;
+  padding: 1rem 1.8rem !important;
+  border-radius: 5px !important;
+  background: $gold-dark !important;
+  color: $white !important;
+  font-weight: 800 !important;
+}
 
-  span {
-    margin-left: 0.5rem;
-    font-size: 1.2rem;
-  }
+.formStatus {
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.success {
+  color: #0c573c;
+  background: rgba(#0c573c, 0.1);
+}
+
+.error {
+  color: #a6322a;
+  background: rgba(#a6322a, 0.1);
 }

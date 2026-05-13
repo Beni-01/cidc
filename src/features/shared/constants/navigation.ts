@@ -5,10 +5,12 @@ export interface NavLink {
 
 export const navigationLinks: NavLink[] = [
   { label: "Accueil", href: "/" },
-  { label: "Intervenants", href: "/intervenants" },
+  { label: "À propos", href: "/about" },
   { label: "Programme", href: "/programme" },
+  { label: "Intervenants", href: "/intervenants" },
+  { label: "Ressources", href: "/ressources" },
+  { label: "Actualités", href: "/actualites" },
   { label: "Contact", href: "/contact" },
-  { label: "Inscription", href: "/inscription" },
 ];
 
 export const footerLinks = {
