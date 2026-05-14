@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
+import { requireAdminApi } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 
 const ADMIN_LIST_LIMIT = 500;
 
 export async function GET() {
+  const auth = await requireAdminApi();
+
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const articleDelegate = prisma.article;
 

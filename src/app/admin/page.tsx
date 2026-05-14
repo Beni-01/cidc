@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import styles from "./page.module.scss";
 
@@ -42,6 +43,16 @@ type Article = {
   createdAt: string;
 };
 
+type AdminUser = {
+  id: number;
+  username: string;
+  fullName?: string | null;
+  role: string;
+  active: boolean;
+  lastLoginAt?: string | null;
+  createdAt: string;
+};
+
 type Overview = {
   subscriptions: Subscription[];
   participants: Participant[];
@@ -55,7 +66,7 @@ type Overview = {
   };
 };
 
-type Tab = "newsletter" | "participants" | "messages" | "articles";
+type Tab = "newsletter" | "participants" | "messages" | "articles" | "users";
 
 const emptyOverview: Overview = {
   subscriptions: [],
@@ -83,11 +94,26 @@ const initialArticleForm = {
   published: true,
 };
 
+const initialUserForm = {
+  username: "",
+  fullName: "",
+  password: "",
+  role: "admin",
+  active: true,
+};
+
+const initialPasswordForm = {
+  currentPassword: "",
+  newPassword: "",
+  confirmPassword: "",
+};
+
 const tabLabels: Record<Tab, string> = {
   newsletter: "Newsletter",
   participants: "Participants",
   messages: "Messages",
   articles: "Articles",
+  users: "Utilisateurs",
 };
 
 function formatDate(date: string) {
@@ -99,43 +125,72 @@ function formatDate(date: string) {
 }
 
 export default function AdminPage() {
+  const router = useRouter();
   const [overview, setOverview] = useState<Overview>(emptyOverview);
+  const [users, setUsers] = useState<AdminUser[]>([]);
+  const [currentUser, setCurrentUser] = useState<AdminUser | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("newsletter");
   const [articleForm, setArticleForm] = useState(initialArticleForm);
+  const [userForm, setUserForm] = useState(initialUserForm);
+  const [passwordForm, setPasswordForm] = useState(initialPasswordForm);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  async function loadOverview() {
+  async function loadAdminData() {
     setIsLoading(true);
-    const response = await fetch("/api/admin/overview", { cache: "no-store" });
-    const data = await response.json();
+    const [overviewResponse, usersResponse, meResponse] = await Promise.all([
+      fetch("/api/admin/overview", { cache: "no-store" }),
+      fetch("/api/admin/users", { cache: "no-store" }),
+      fetch("/api/admin/auth/me", { cache: "no-store" }),
+    ]);
+    const [overviewData, usersData, meData] = await Promise.all([
+      overviewResponse.json(),
+      usersResponse.json(),
+      meResponse.json(),
+    ]);
 
-    if (!response.ok) {
-      throw new Error(typeof data?.error === "string" ? data.error : "Chargement impossible.");
+    if (!overviewResponse.ok) {
+      throw new Error(typeof overviewData?.error === "string" ? overviewData.error : "Chargement impossible.");
     }
 
-    setOverview(data);
+    if (!usersResponse.ok) {
+      throw new Error(typeof usersData?.error === "string" ? usersData.error : "Chargement des utilisateurs impossible.");
+    }
+
+    setOverview(overviewData);
+    setUsers(usersData.users || []);
+    setCurrentUser(meResponse.ok ? meData.user : null);
     setIsLoading(false);
   }
 
   useEffect(() => {
     let isMounted = true;
 
-    async function hydrateOverview() {
+    async function hydrateAdminData() {
       try {
-        const response = await fetch("/api/admin/overview", { cache: "no-store" });
-        const data = await response.json();
+        const [overviewResponse, usersResponse, meResponse] = await Promise.all([
+          fetch("/api/admin/overview", { cache: "no-store" }),
+          fetch("/api/admin/users", { cache: "no-store" }),
+          fetch("/api/admin/auth/me", { cache: "no-store" }),
+        ]);
+        const [overviewData, usersData, meData] = await Promise.all([
+          overviewResponse.json(),
+          usersResponse.json(),
+          meResponse.json(),
+        ]);
 
         if (!isMounted) {
           return;
         }
 
-        if (!response.ok) {
-          throw new Error(typeof data?.error === "string" ? data.error : "Chargement impossible.");
+        if (!overviewResponse.ok || !usersResponse.ok) {
+          throw new Error("Impossible de charger les données admin.");
         }
 
-        setOverview(data);
+        setOverview(overviewData);
+        setUsers(usersData.users || []);
+        setCurrentUser(meResponse.ok ? meData.user : null);
       } catch (error) {
         if (isMounted) {
           setMessage(error instanceof Error ? error.message : "Impossible de charger les données.");
@@ -147,7 +202,7 @@ export default function AdminPage() {
       }
     }
 
-    void hydrateOverview();
+    void hydrateAdminData();
 
     return () => {
       isMounted = false;
@@ -168,7 +223,7 @@ export default function AdminPage() {
     setMessage("");
 
     try {
-      await loadOverview();
+      await loadAdminData();
       setStatus("success");
       setMessage("Données actualisées.");
     } catch (error) {
@@ -176,6 +231,12 @@ export default function AdminPage() {
       setMessage(error instanceof Error ? error.message : "Actualisation impossible.");
       setIsLoading(false);
     }
+  }
+
+  async function handleLogout() {
+    await fetch("/api/admin/auth/logout", { method: "POST" });
+    router.push("/admin/login");
+    router.refresh();
   }
 
   async function handleArticleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -199,11 +260,65 @@ export default function AdminPage() {
       setArticleForm(initialArticleForm);
       setStatus("success");
       setMessage("Article enregistré et relié à la page Actualités.");
-      await loadOverview();
+      await loadAdminData();
       setActiveTab("articles");
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Une erreur est survenue.");
+    }
+  }
+
+  async function handleUserSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userForm),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(typeof data?.error === "string" ? data.error : "Utilisateur invalide.");
+      }
+
+      setUserForm(initialUserForm);
+      setStatus("success");
+      setMessage("Utilisateur admin créé avec succès.");
+      await loadAdminData();
+      setActiveTab("users");
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof Error ? error.message : "Impossible de créer l'utilisateur.");
+    }
+  }
+
+  async function handlePasswordSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/admin/auth/password", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(passwordForm),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(typeof data?.error === "string" ? data.error : "Mot de passe invalide.");
+      }
+
+      setPasswordForm(initialPasswordForm);
+      setStatus("success");
+      setMessage("Mot de passe modifié avec succès.");
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof Error ? error.message : "Impossible de modifier le mot de passe.");
     }
   }
 
@@ -226,9 +341,19 @@ export default function AdminPage() {
             </button>
           ))}
         </nav>
+        {currentUser && (
+          <div className={styles.sessionBox}>
+            <small>Connecté</small>
+            <strong>{currentUser.fullName || currentUser.username}</strong>
+            <span>{currentUser.role}</span>
+          </div>
+        )}
         <Link className={styles.siteLink} href="/actualites">
           Voir le site public
         </Link>
+        <button className={styles.logoutButton} onClick={handleLogout} type="button">
+          Déconnexion
+        </button>
       </aside>
 
       <section className={styles.content}>
@@ -266,6 +391,11 @@ export default function AdminPage() {
             <span>Articles</span>
             <strong>{overview.counts.articles}</strong>
             <small>contenus créés</small>
+          </article>
+          <article>
+            <span>Utilisateurs</span>
+            <strong>{users.length}</strong>
+            <small>accès admin</small>
           </article>
         </section>
 
@@ -375,6 +505,33 @@ export default function AdminPage() {
                           <td>
                             <Link href={`/actualites/${item.slug}`}>Lire</Link>
                           </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+
+                {activeTab === "users" && (
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Utilisateur</th>
+                        <th>Nom</th>
+                        <th>Rôle</th>
+                        <th>Statut</th>
+                        <th>Dernière connexion</th>
+                        <th>Création</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {users.map((item) => (
+                        <tr key={item.id}>
+                          <td>{item.username}</td>
+                          <td>{item.fullName || "-"}</td>
+                          <td>{item.role}</td>
+                          <td>{item.active ? "Actif" : "Désactivé"}</td>
+                          <td>{item.lastLoginAt ? formatDate(item.lastLoginAt) : "Jamais"}</td>
+                          <td>{formatDate(item.createdAt)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -491,6 +648,103 @@ export default function AdminPage() {
 
               <button type="submit" disabled={status === "loading"}>
                 {status === "loading" ? "Enregistrement..." : "Publier l'article"}
+              </button>
+            </form>
+
+            <form className={styles.articleForm} onSubmit={handleUserSubmit}>
+              <span>Accès CMS</span>
+              <h2>Créer un utilisateur</h2>
+
+              <div className={styles.formGrid}>
+                <label>
+                  Username
+                  <input
+                    autoComplete="off"
+                    onChange={(event) => setUserForm({ ...userForm, username: event.target.value })}
+                    required
+                    value={userForm.username}
+                  />
+                </label>
+                <label>
+                  Rôle
+                  <input
+                    onChange={(event) => setUserForm({ ...userForm, role: event.target.value })}
+                    required
+                    value={userForm.role}
+                  />
+                </label>
+              </div>
+              <label>
+                Nom complet
+                <input
+                  onChange={(event) => setUserForm({ ...userForm, fullName: event.target.value })}
+                  value={userForm.fullName}
+                />
+              </label>
+              <label>
+                Mot de passe
+                <input
+                  autoComplete="new-password"
+                  minLength={6}
+                  onChange={(event) => setUserForm({ ...userForm, password: event.target.value })}
+                  required
+                  type="password"
+                  value={userForm.password}
+                />
+              </label>
+              <label className={styles.checkbox}>
+                <input
+                  checked={userForm.active}
+                  onChange={(event) => setUserForm({ ...userForm, active: event.target.checked })}
+                  type="checkbox"
+                />
+                Compte actif
+              </label>
+
+              <button type="submit" disabled={status === "loading"}>
+                {status === "loading" ? "Création..." : "Créer l'utilisateur"}
+              </button>
+            </form>
+
+            <form className={styles.articleForm} onSubmit={handlePasswordSubmit}>
+              <span>Sécurité</span>
+              <h2>Modifier mon mot de passe</h2>
+
+              <label>
+                Mot de passe actuel
+                <input
+                  autoComplete="current-password"
+                  onChange={(event) => setPasswordForm({ ...passwordForm, currentPassword: event.target.value })}
+                  required
+                  type="password"
+                  value={passwordForm.currentPassword}
+                />
+              </label>
+              <label>
+                Nouveau mot de passe
+                <input
+                  autoComplete="new-password"
+                  minLength={8}
+                  onChange={(event) => setPasswordForm({ ...passwordForm, newPassword: event.target.value })}
+                  required
+                  type="password"
+                  value={passwordForm.newPassword}
+                />
+              </label>
+              <label>
+                Confirmer le nouveau mot de passe
+                <input
+                  autoComplete="new-password"
+                  minLength={8}
+                  onChange={(event) => setPasswordForm({ ...passwordForm, confirmPassword: event.target.value })}
+                  required
+                  type="password"
+                  value={passwordForm.confirmPassword}
+                />
+              </label>
+
+              <button type="submit" disabled={status === "loading"}>
+                {status === "loading" ? "Modification..." : "Modifier le mot de passe"}
               </button>
             </form>
           </aside>

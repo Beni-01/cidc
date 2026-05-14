@@ -73,3 +73,17 @@ model Article {
 
   @@map("articles")
 }
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  fullName     String?
+  passwordHash String
+  role         String   @default("admin")
+  active       Boolean  @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin_users")
+}

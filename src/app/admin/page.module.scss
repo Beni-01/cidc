@@ -82,6 +82,39 @@
   border: 1px solid rgba($white, 0.18);
 }
 
+.sessionBox {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem;
+  color: rgba($white, 0.82);
+  border: 1px solid rgba($white, 0.14);
+  border-radius: $radius-md;
+  background: rgba($white, 0.06);
+
+  small {
+    color: $gold-light;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    color: $white;
+    overflow-wrap: anywhere;
+  }
+
+  span {
+    font-size: 0.82rem;
+  }
+}
+
+.logoutButton {
+  justify-content: center;
+  color: $deep-green-dark !important;
+  background: $gold !important;
+}
+
 .content {
   min-width: 0;
   padding: clamp(1rem, 2.6vw, 2.2rem);
@@ -141,17 +174,9 @@
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 0.9rem;
   margin-top: 1rem;
-
-  @media (max-width: $bp-desktop) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (max-width: $bp-mobile) {
-    grid-template-columns: 1fr;
-  }
 
   article {
     padding: 1.1rem;

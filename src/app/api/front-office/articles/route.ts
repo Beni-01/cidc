@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireAdminApi } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
@@ -38,6 +39,12 @@ async function createUniqueSlug(title: string) {
 }
 
 export async function GET() {
+  const auth = await requireAdminApi();
+
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const articles = await prisma.article.findMany({
       orderBy: { createdAt: "desc" },
@@ -54,6 +61,12 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  const auth = await requireAdminApi();
+
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const payload = articleSchema.parse(await req.json());
     const slug = await createUniqueSlug(payload.title);
