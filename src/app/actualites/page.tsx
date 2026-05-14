@@ -36,6 +36,7 @@ export default async function NewsPage() {
             alt="Symboles de justice et de constitution"
             fill
             priority
+            sizes="(max-width: 900px) 100vw, 52vw"
             className={styles.heroImage}
           />
         </AnimatedSection>
@@ -65,6 +66,7 @@ export default async function NewsPage() {
               src={featured.image}
               alt="Livre et notes de droit constitutionnel"
               fill
+              sizes="(max-width: 900px) 100vw, 46vw"
               className={styles.coverImage}
             />
           </div>
@@ -89,6 +91,7 @@ export default async function NewsPage() {
                     src={article.image}
                     alt={article.title}
                     fill
+                    sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
                     className={styles.coverImage}
                   />
                 </div>

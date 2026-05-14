@@ -27,6 +27,7 @@ export default function SpeakersPreview() {
                       src={speaker.image}
                       alt={speaker.name}
                       fill
+                      sizes="(max-width: 700px) 44vw, (max-width: 1100px) 24vw, 180px"
                       className={styles.image}
                     />
                   </div>

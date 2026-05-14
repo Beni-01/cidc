@@ -50,6 +50,7 @@ export default async function ArticlePage({
             alt={article.title}
             fill
             priority
+            sizes="(max-width: 900px) 100vw, 52vw"
             className={styles.heroImage}
           />
         </AnimatedSection>

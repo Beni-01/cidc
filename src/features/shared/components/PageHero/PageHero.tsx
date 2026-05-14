@@ -25,6 +25,7 @@ export default function PageHero({ title, description, tagline, image }: PageHer
               alt="Hero background"
               fill
               priority
+              sizes="(max-width: 900px) 100vw, 52vw"
               className={styles.image}
             />
             <div className={styles.patternDots} />

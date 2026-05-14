@@ -53,6 +53,7 @@ export default function AboutPage() {
             alt="Livre constitutionnel et symboles de justice"
             fill
             priority
+            sizes="(max-width: 900px) 100vw, 52vw"
             className={styles.heroImage}
           />
         </AnimatedSection>
@@ -110,6 +111,7 @@ export default function AboutPage() {
             src="/images/hero-gavel.webp"
             alt="Marteau de justice sur un livre de constitution"
             fill
+            sizes="(max-width: 900px) 100vw, 44vw"
             className={styles.coverImage}
           />
         </AnimatedSection>

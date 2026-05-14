@@ -13,6 +13,7 @@ export default function About() {
                 src="/images/about-book.webp"
                 alt="Constitution Liberté Justice Book"
                 fill
+                sizes="(max-width: 900px) 100vw, 42vw"
                 className={styles.image}
               />
             </div>

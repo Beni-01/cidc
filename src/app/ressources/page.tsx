@@ -87,6 +87,7 @@ export default function ResourcesPage() {
             alt="Documents de droit constitutionnel"
             fill
             priority
+            sizes="(max-width: 900px) 100vw, 52vw"
             className={styles.heroImage}
           />
         </AnimatedSection>
