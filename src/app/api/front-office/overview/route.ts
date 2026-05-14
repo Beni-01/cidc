@@ -1,16 +1,29 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+const ADMIN_LIST_LIMIT = 500;
+
 export async function GET() {
   try {
-    const [subscriptions, participants, messages, articles] = await Promise.all([
+    const articleDelegate = prisma.article;
+
+    const [
+      subscriptions,
+      participants,
+      messages,
+      articles,
+      subscriptionCount,
+      participantCount,
+      messageCount,
+      articleCount,
+    ] = await Promise.all([
       prisma.newsletterSubscription.findMany({
         orderBy: { createdAt: "desc" },
-        take: 100,
+        take: ADMIN_LIST_LIMIT,
       }),
       prisma.participant.findMany({
         orderBy: { createdAt: "desc" },
-        take: 100,
+        take: ADMIN_LIST_LIMIT,
         select: {
           id: true,
           prenom: true,
@@ -25,12 +38,18 @@ export async function GET() {
       }),
       prisma.contactMessage.findMany({
         orderBy: { createdAt: "desc" },
-        take: 100,
+        take: ADMIN_LIST_LIMIT,
       }),
-      prisma.article.findMany({
-        orderBy: { createdAt: "desc" },
-        take: 100,
-      }),
+      articleDelegate
+        ? articleDelegate.findMany({
+            orderBy: { createdAt: "desc" },
+            take: ADMIN_LIST_LIMIT,
+          })
+        : Promise.resolve([]),
+      prisma.newsletterSubscription.count(),
+      prisma.participant.count(),
+      prisma.contactMessage.count(),
+      articleDelegate ? articleDelegate.count() : Promise.resolve(0),
     ]);
 
     return NextResponse.json({
@@ -39,10 +58,10 @@ export async function GET() {
       messages,
       articles,
       counts: {
-        subscriptions: subscriptions.length,
-        participants: participants.length,
-        messages: messages.length,
-        articles: articles.length,
+        subscriptions: subscriptionCount,
+        participants: participantCount,
+        messages: messageCount,
+        articles: articleCount,
       },
     });
   } catch (error) {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/features/shared/components/Navbar";
 import Footer from "@/features/shared/components/Footer";
 import PagePulse from "@/features/shared/components/PagePulse";
+import SmoothCursor from "@/features/shared/components/SmoothCursor";
 import { siteConfig } from "@/features/shared/constants/site.config";
 import "@/styles/globals.scss";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className="antialiased">
         <PagePulse />
+        <SmoothCursor />
         <Navbar />
         <main className="min-h-screen">
           {children}

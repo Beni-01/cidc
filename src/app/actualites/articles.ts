@@ -105,7 +105,13 @@ function toParagraphs(value: string) {
 }
 
 export async function getDatabaseArticles(): Promise<NewsArticle[]> {
-  const articles = await prisma.article.findMany({
+  const articleDelegate = prisma.article;
+
+  if (!articleDelegate) {
+    return [];
+  }
+
+  const articles = await articleDelegate.findMany({
     where: { published: true },
     orderBy: { createdAt: "desc" },
   });
@@ -137,7 +143,13 @@ export async function getArticleBySlug(slug: string) {
     return staticArticle;
   }
 
-  const databaseArticle = await prisma.article.findFirst({
+  const articleDelegate = prisma.article;
+
+  if (!articleDelegate) {
+    return undefined;
+  }
+
+  const databaseArticle = await articleDelegate.findFirst({
     where: { slug, published: true },
   });
 

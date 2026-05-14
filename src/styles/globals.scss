@@ -31,7 +31,28 @@ body {
   background-color: $cream;
   line-height: 1.6;
   overflow-x: hidden;
-  
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body,
+  a,
+  button,
+  summary,
+  label,
+  select,
+  input[type='button'],
+  input[type='checkbox'],
+  input[type='radio'],
+  input[type='submit'],
+  [role='button'] {
+    cursor: none;
+  }
+
+  input:not([type='button']):not([type='checkbox']):not([type='radio']):not([type='submit']),
+  textarea,
+  [contenteditable='true'] {
+    cursor: text;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
