@@ -54,6 +54,6 @@ export const programmeData = [
     time: "20:00",
     title: "Dîner officiel",
     type: "ceremony",
-    location: "Hôtel Hilton, Yaoundé",
+    location: "Blazon Hotel, Kinshasa",
   },
 ];

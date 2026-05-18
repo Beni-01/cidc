@@ -69,7 +69,7 @@ export default function Countdown() {
         <AnimatedSection animation="fadeInUp" className={styles.header}>
           <span className={styles.tagline}>PROCHAIN ÉVÉNEMENT</span>
           <h2 className={styles.title}>Le colloque approche</h2>
-          <p className={styles.subtitle}>22 Octobre 2026 — Yaoundé, Cameroun</p>
+          <p className={styles.subtitle}>22 Octobre 2026 — Kinshasa, RDC</p>
         </AnimatedSection>
 
         <div className={styles.grid}>

@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Colloque International de Droit Constitutionnel",
-  shortName: "CIDC 2025",
+  shortName: "CIDC 2026",
   description:
     "Un rendez-vous international dédié aux enjeux contemporains du droit constitutionnel et à la consolidation de l'État de droit.",
   url: "https://colloque-droit-constitutionnel.org",
@@ -9,12 +9,12 @@ export const siteConfig = {
   event: {
     title: "Comprendre. Débattre. Renforcer la Constitution.",
     subtitle: "Un rendez-vous international dédié aux enjeux contemporains du droit constitutionnel et à la consolidation de l'État de droit.",
-    edition: "ÉDITION 2025",
-    dates: "15 – 17 SEPT. 2025",
-    location: "Yaoundé, Cameroun",
+    edition: "ÉDITION 2026",
+    dates: "22 OCTOBRE 2026",
+    location: "Kinshasa, RDC",
     organizer: "Comité International de Droit Constitutionnel",
     stats: {
-      days: "03",
+      days: "01",
       sessions: "24",
       speakers: "60+",
       participants: "500+",
@@ -23,8 +23,8 @@ export const siteConfig = {
 
   contact: {
     email: "contact@colloque-droit-constitutionnel.org",
-    phone: "+237 6 12 34 56 78",
-    address: "Yaoundé, Cameroun",
+    phone: "+243 812 963 415",
+    address: "Kinshasa, RDC",
   },
 
   social: {
@@ -36,7 +36,7 @@ export const siteConfig = {
   seo: {
     title: "Colloque International de Droit Constitutionnel 2026",
     description:
-      "Participez au Colloque International de Droit Constitutionnel — 12 au 14 novembre 2026, Kinshasa. Intervenants de renom, débats académiques et perspectives juridiques.",
+      "Participez au Colloque International de Droit Constitutionnel — 22 Octobre 2026, Kinshasa, RDC. Intervenants de renom, débats académiques et perspectives juridiques.",
     keywords: [
       "colloque",
       "droit constitutionnel",

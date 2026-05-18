@@ -7,7 +7,7 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.content}>
-          <span className={styles.edition}>ÉDITION 2025</span>
+          <span className={styles.edition}>ÉDITION 2026</span>
           <h1 className={styles.title}>
             Comprendre.<br />
             Débattre.<br />

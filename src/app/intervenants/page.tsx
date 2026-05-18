@@ -20,7 +20,7 @@ const countryFlags: Record<string, string> = {
 };
 
 const stats = [
-  { value: 3, label: "JOURS", padStart: 2 },
+  { value: 1, label: "JOUR", padStart: 2 },
   { value: 24, label: "SESSIONS" },
   { value: 60, label: "INTERVENANTS", suffix: "+" },
   { value: 500, label: "PARTICIPANTS", suffix: "+" },
@@ -32,7 +32,7 @@ export default function IntervenantsPage() {
       <section className={styles.hero}>
         <div className={styles.heroTexture} />
         <div className={styles.heroContent}>
-          <span className={styles.edition}>ÉDITION 2025</span>
+          <span className={styles.edition}>ÉDITION 2026</span>
           <span className={styles.goldLine} />
           <h1 className={styles.heroTitle}>
             Penser la<br />
@@ -71,8 +71,8 @@ export default function IntervenantsPage() {
               </svg>
             </div>
             <div>
-              <strong>YAOUNDÉ, CAMEROUN</strong>
-              <span>15 - 17 SEPTEMBRE 2025</span>
+              <strong>KINSHASA, RDC</strong>
+              <span>22 OCTOBRE 2026</span>
             </div>
           </div>
           <div className={styles.stats}>

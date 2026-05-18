@@ -43,9 +43,9 @@ export const speakersData: Speaker[] = [
   {
     id: 5,
     name: "Pr. Serge Kamga",
-    role: "Université de Yaoundé II",
-    country: "Cameroun",
-    countryCode: "CM",
+    role: "Université de Kinshasa",
+    country: "RDC",
+    countryCode: "CD",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400",
   },
   {

@@ -9,8 +9,6 @@ import styles from "./page.module.scss";
 
 const days = [
   { date: "MER. 22 OCT.", label: "Jour 1", active: true },
-  { date: "JEU. 23 OCT.", label: "Jour 2" },
-  { date: "VEN. 24 OCT.", label: "Jour 3" },
 ];
 
 const timeline = [
@@ -31,7 +29,7 @@ const timeline = [
     location: "Amphithéâtre A",
     side: "right",
     speakers: [
-      ["Pr. Achille Mbembe", "Professeur de droit public, Université de Yaoundé II — Cameroun"],
+      ["Pr. Achille Mbembe", "Professeur de droit public, Université de Kinshasa — RDC"],
       ["Pr. Idrissa Mbaye", "Président honoraire du Conseil constitutionnel — Sénégal"],
       ["Pr. Thérèse Kouassi", "Doyenne de la Faculté de droit — Côte d’Ivoire"],
       ["Pr. Charles Manga", "Professeur de droit public — RDC"],
@@ -79,7 +77,7 @@ const timeline = [
     range: "20:00",
     type: "CÉRÉMONIE",
     title: "Dîner officiel",
-    location: "Hôtel Hilton, Yaoundé",
+    location: "Blazon Hotel, Kinshasa",
     side: "left",
     highlight: true,
   },
@@ -189,8 +187,8 @@ export default function ProgrammePage() {
             <CalendarIcon />
           </div>
           <span>DATES</span>
-          <h2>22–24 Octobre 2025</h2>
-          <p>Trois jours d’échanges, de réflexions et de dialogues autour des grands enjeux constitutionnels contemporains.</p>
+          <h2>22 Octobre 2026</h2>
+          <p>Une journée d’échanges, de réflexions et de dialogues autour des grands enjeux constitutionnels contemporains.</p>
         </AnimatedSection>
 
         <AnimatedSection animation="fadeInUp" delay={0.1}>
