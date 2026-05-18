@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const newsletterSchema = z.object({
   email: z.email({ message: "Email invalide" }),
 });

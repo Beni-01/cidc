@@ -3,6 +3,9 @@ import { z } from "zod";
 import { hashAdminPassword, requireAdminApi, verifyAdminPassword } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const passwordSchema = z
   .object({
     currentPassword: z.string().min(1, "Le mot de passe actuel est requis."),

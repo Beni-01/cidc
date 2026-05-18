@@ -3,6 +3,9 @@ import { z } from "zod";
 import { hashAdminPassword, requireAdminApi } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const createUserSchema = z.object({
   username: z
     .string()

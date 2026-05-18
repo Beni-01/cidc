@@ -105,30 +105,35 @@ function toParagraphs(value: string) {
 }
 
 export async function getDatabaseArticles(): Promise<NewsArticle[]> {
-  const articleDelegate = prisma.article;
+  try {
+    const articleDelegate = prisma.article;
 
-  if (!articleDelegate) {
+    if (!articleDelegate) {
+      return [];
+    }
+
+    const articles = await articleDelegate.findMany({
+      where: { published: true },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return articles.map((article) => ({
+      slug: article.slug,
+      category: article.category,
+      date: article.date,
+      readTime: article.readTime,
+      title: article.title,
+      excerpt: article.excerpt,
+      image: article.image,
+      intro: article.intro,
+      body: toParagraphs(article.body),
+      quote: article.quote,
+      author: article.author,
+    }));
+  } catch (error) {
+    console.warn("Database articles unavailable:", error);
     return [];
   }
-
-  const articles = await articleDelegate.findMany({
-    where: { published: true },
-    orderBy: { createdAt: "desc" },
-  });
-
-  return articles.map((article) => ({
-    slug: article.slug,
-    category: article.category,
-    date: article.date,
-    readTime: article.readTime,
-    title: article.title,
-    excerpt: article.excerpt,
-    image: article.image,
-    intro: article.intro,
-    body: toParagraphs(article.body),
-    quote: article.quote,
-    author: article.author,
-  }));
 }
 
 export async function getArticles(): Promise<NewsArticle[]> {
@@ -143,31 +148,36 @@ export async function getArticleBySlug(slug: string) {
     return staticArticle;
   }
 
-  const articleDelegate = prisma.article;
+  try {
+    const articleDelegate = prisma.article;
 
-  if (!articleDelegate) {
+    if (!articleDelegate) {
+      return undefined;
+    }
+
+    const databaseArticle = await articleDelegate.findFirst({
+      where: { slug, published: true },
+    });
+
+    if (!databaseArticle) {
+      return undefined;
+    }
+
+    return {
+      slug: databaseArticle.slug,
+      category: databaseArticle.category,
+      date: databaseArticle.date,
+      readTime: databaseArticle.readTime,
+      title: databaseArticle.title,
+      excerpt: databaseArticle.excerpt,
+      image: databaseArticle.image,
+      intro: databaseArticle.intro,
+      body: toParagraphs(databaseArticle.body),
+      quote: databaseArticle.quote,
+      author: databaseArticle.author,
+    };
+  } catch (error) {
+    console.warn("Database article unavailable:", error);
     return undefined;
   }
-
-  const databaseArticle = await articleDelegate.findFirst({
-    where: { slug, published: true },
-  });
-
-  if (!databaseArticle) {
-    return undefined;
-  }
-
-  return {
-    slug: databaseArticle.slug,
-    category: databaseArticle.category,
-    date: databaseArticle.date,
-    readTime: databaseArticle.readTime,
-    title: databaseArticle.title,
-    excerpt: databaseArticle.excerpt,
-    image: databaseArticle.image,
-    intro: databaseArticle.intro,
-    body: toParagraphs(databaseArticle.body),
-    quote: databaseArticle.quote,
-    author: databaseArticle.author,
-  };
 }

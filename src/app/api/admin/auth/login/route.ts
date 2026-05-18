@@ -10,6 +10,9 @@ import {
 } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const loginSchema = z.object({
   username: z.string().trim().min(1, "Le nom d'utilisateur est requis."),
   password: z.string().min(1, "Le mot de passe est requis."),
