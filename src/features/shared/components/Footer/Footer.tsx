@@ -111,10 +111,11 @@ export default function Footer() {
             <p>
               N&apos;hésitez pas, prenons contact. MampCode vous accompagne dans la conception de sites, plateformes et expériences digitales modernes.
             </p>
-            <a className={styles.callButton} href="tel:0835920908">Appeler 0835920908</a>
+            <a className={styles.callButton} href="mailto:contact.mampcode@gmail.com">Ecrivez sur contact.mampcode@gmail.com</a>
           </div>
         </div>
       )}
     </footer>
   );
 }
+
