@@ -13,11 +13,11 @@
 }
 
 .hero {
-  min-height: 420px;
+  min-height: 250px;
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 1.4fr 1fr;
   overflow: hidden;
-  background: #f7f4ee;
+  background: #062f24;
 
   @media (max-width: $bp-tablet) {
     grid-template-columns: 1fr 0.72fr;
@@ -29,71 +29,60 @@
 }
 
 .heroContent {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 4rem max(var(--page-gutter), calc((100vw - 1200px) / 2 + var(--page-gutter)));
-
-  span {
-    color: $gold-dark;
-    font-size: 0.9rem;
-    font-weight: 800;
-    letter-spacing: 1.4px;
-  }
+  padding: 3.5rem 4rem;
+  color: $white;
+  background:
+    linear-gradient(90deg, rgba(#062f24, 0.95), rgba(#062f24, 0.84)),
+    url('/images/about-book.webp');
+  background-size: cover;
+  background-position: center;
 
   h1 {
-    color: $deep-green;
-    font-size: clamp(3rem, 6vw, 5rem);
+    color: $white;
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
     font-weight: 600;
-    line-height: 1.08;
-    margin: 1.6rem 0 1.4rem;
-  }
-
-  i {
-    display: block;
-    width: 58px;
-    height: 3px;
-    background: $gold;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1rem;
   }
 
   p {
-    max-width: 450px;
-    color: #17291f;
-    line-height: 1.75;
+    max-width: 420px;
+    color: rgba($white, 0.92);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: $bp-tablet) {
+    padding: 3rem var(--page-gutter);
   }
 }
 
 .heroVisual {
   position: relative;
-  min-height: 420px;
-  clip-path: polygon(10% 0, 100% 0, 88% 100%, 0 100%);
-  background: $deep-green;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba($deep-green, 0.05), rgba($deep-green, 0.46));
-  }
+  min-height: 250px;
+  clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
 
   @media (max-width: $bp-tablet) {
-    min-height: 260px;
     clip-path: none;
+    min-height: 220px;
   }
 }
 
 .heroImage {
   object-fit: cover;
+  object-position: center;
 }
 
 .dots {
   position: absolute;
-  right: 4rem;
-  top: 8rem;
   z-index: 2;
-  width: 120px;
-  height: 120px;
-  background-image: radial-gradient($gold 1.5px, transparent 1.5px);
+  top: 50px;
+  left: 38px;
+  width: 96px;
+  height: 96px;
+  background-image: radial-gradient(rgba($gold, 0.9) 1.5px, transparent 1.5px);
   background-size: 18px 18px;
 }
 

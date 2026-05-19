@@ -6,7 +6,10 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 const newsletterSchema = z.object({
-  email: z.email({ message: "Email invalide" }),
+  email: z.preprocess(
+    (value) => (typeof value === "string" ? value.trim().toLowerCase() : value),
+    z.email({ message: "Email invalide" })
+  ),
 });
 
 export async function POST(req: Request) {
@@ -20,7 +23,10 @@ export async function POST(req: Request) {
       create: { email },
     });
 
-    return NextResponse.json(subscription, { status: 201 });
+    return NextResponse.json(
+      { message: "Abonnement newsletter enregistré.", subscription },
+      { status: 201 }
+    );
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.issues }, { status: 400 });

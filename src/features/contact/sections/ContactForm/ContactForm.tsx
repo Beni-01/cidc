@@ -50,12 +50,25 @@ export default function ContactForm() {
       <div className={styles.container}>
         <div className={styles.topGrid}>
           <AnimatedSection animation="slideInLeft" className={styles.mapCard}>
+            <iframe
+              className={styles.mapFrame}
+              title="Carte Blazon Hotel, Kinshasa"
+              src="https://www.google.com/maps?q=Blazon%20Hotel%20119%20Boulevard%20Colonel%20Tshatshi%20Kinshasa%20Gombe%20RDC&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
             <div className={styles.hotelCard}>
               <strong>Blazon Hotel</strong>
               <span>119, Blvd Colonel Tshatshi<br />Kinshasa – Gombe</span>
               <small>4,4 ★ (822 avis)</small>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Blazon%20Hotel%20119%20Boulevard%20Colonel%20Tshatshi%20Kinshasa%20Gombe%20RDC"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ouvrir dans Maps
+              </a>
             </div>
-            <div className={styles.mapPin}>●</div>
           </AnimatedSection>
 
           <AnimatedSection animation="slideInRight" className={styles.infoCard}>

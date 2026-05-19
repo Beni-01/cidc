@@ -10,9 +10,7 @@ export default function ContactPage() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <AnimatedSection animation="fadeInUp">
-            <span>CONTACTEZ-NOUS</span>
-            <h1>Nous sommes<br />à votre écoute.</h1>
-            <i />
+            <h1>Contact</h1>
             <p>
               Pour toute question ou information complémentaire, n&apos;hésitez pas à nous écrire ou à nous appeler. Notre équipe vous répondra avec plaisir.
             </p>

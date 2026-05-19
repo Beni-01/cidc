@@ -10,6 +10,27 @@ export default function NewsletterBox() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
+  function getErrorMessage(error: unknown) {
+    if (typeof error === "string") {
+      return error;
+    }
+
+    if (Array.isArray(error)) {
+      return error
+        .map((item) => {
+          if (item && typeof item === "object" && "message" in item) {
+            return String(item.message);
+          }
+
+          return null;
+        })
+        .filter(Boolean)
+        .join(" ");
+    }
+
+    return "Impossible d'enregistrer votre adresse.";
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
@@ -25,7 +46,7 @@ export default function NewsletterBox() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data?.error ?? "Impossible d'enregistrer votre adresse.");
+        throw new Error(getErrorMessage(data?.error));
       }
 
       setStatus("success");
